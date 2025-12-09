@@ -1,23 +1,11 @@
-name: Pierwszy workflow z zależnościami
-
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+name: Just run
+on: workflow_dispatch
 
 jobs:
-  first-job:
+  run-it:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Wyświetl komunikat pierwszego joba
-        run: echo "To jest pierwszy job – uruchomił się poprawnie."
+      - uses: actions/checkout@v4
 
-  second-job:
-    needs: first-job
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Wyświetl komunikat drugiego joba
-        run: echo "To jest drugi job – uruchomił się dopiero po zakończeniu first-job."
+      - name: Run script
+        run: python3 script.py
