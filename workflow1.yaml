@@ -1,7 +1,23 @@
-name: Hello
-on: workflow_dispatch
+name: Pierwszy workflow z zależnościami
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
 jobs:
-  say-hi:
+  first-job:
     runs-on: ubuntu-latest
+
     steps:
-      - run: echo "Hello, GitHub Actions!"
+      - name: Wyświetl komunikat pierwszego joba
+        run: echo "To jest pierwszy job – uruchomił się poprawnie."
+
+  second-job:
+    needs: first-job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Wyświetl komunikat drugiego joba
+        run: echo "To jest drugi job – uruchomił się dopiero po zakończeniu first-job."
