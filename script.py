@@ -1,1 +1,4 @@
-print("Hello from the script!")
+import os
+
+msg = os.getenv("MY_MESSAGE", "Brak zmiennej!")
+print("Wartość zmiennej środowiskowej:", msg)
