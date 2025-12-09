@@ -20,3 +20,16 @@ jobs:
       run: |
         docker build -t $IMAGE:latest .
         docker push $IMAGE:latest
+
+    - name: Tag and push by commit SHA
+      run: |
+        docker tag $IMAGE:latest $IMAGE:${{ github.sha }}
+        docker push $IMAGE:${{ github.sha }}
+
+    - name: Create timestamp
+      run: echo "TS=$(date +%Y-%m-%d-%H-%M-%S)" >> $GITHUB_ENV
+
+    - name: Tag and push by timestamp
+      run: |
+        docker tag $IMAGE:latest $IMAGE:${{ env.TS }}
+        docker push $IMAGE:${{ env.TS }}
