@@ -4,8 +4,10 @@ on: workflow_dispatch
 jobs:
   run-it:
     runs-on: ubuntu-latest
+    env:
+      MY_MESSAGE: "Pozdrowienia ze zmiennej środowiskowej!"
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run script
+      - name: Run script with env variable
         run: python3 script.py
