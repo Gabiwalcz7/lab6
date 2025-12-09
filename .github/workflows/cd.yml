@@ -8,11 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-
     - name: Login to GHCR
       run: echo "${{ github.token }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
     - name: Build and push
       run: |
-        docker build -t ghcr.io/${{ toLower(github.repository_owner) }}/python-app:latest .
-        docker push ghcr.io/${{ toLower(github.repository_owner) }}/python-app:latest
+        docker build -t ghcr.io/gabiwalcz7/python-app:latest .
+        docker push ghcr.io/gabiwalcz7/python-app:latest
